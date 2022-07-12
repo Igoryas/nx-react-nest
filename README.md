@@ -1,2 +1,2 @@
 # TODO APP.
-## nx nest react mongodb docker
+## nx / nest / mongodb / react / docker
