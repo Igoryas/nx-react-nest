@@ -21,7 +21,6 @@ const getMongoOptions = () => ({
 export const getMongoConfig = async (
   configService: ConfigService
 ): Promise<MongooseModuleOptions> => {
-  console.log(getMongoString(configService));
   return {
     uri: getMongoString(configService),
     ...getMongoOptions(),
