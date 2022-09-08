@@ -61,9 +61,4 @@ export class UsersService {
 
     return toUserDto(user);
   }
-
-  private _sanitizeUser(user: UserModel) {
-    delete user.password;
-    return user;
-  }
 }
