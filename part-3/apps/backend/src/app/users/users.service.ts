@@ -61,4 +61,12 @@ export class UsersService {
 
     return toUserDto(user);
   }
+
+  async setTaskToCurrentUser(_id, taskId) {
+    await this.userModel.updateOne({ _id }, { $push: { tasks: taskId } });
+  }
+
+  async deleteTaskToCurrentUser(_id, taskId) {
+    await this.userModel.updateOne({ _id }, { $pull: { tasks: taskId } });
+  }
 }
