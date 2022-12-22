@@ -1,9 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { TasksInterface } from '../interfaces/tasks.interface';
+import { TaskInterface } from '../interfaces/task.interface';
 
 @Schema({ collection: 'tasks', timestamps: true })
-export class TaskModel extends Document implements TasksInterface {
+export class TaskModel extends Document implements TaskInterface {
   @Prop({ required: true })
   description: string;
 

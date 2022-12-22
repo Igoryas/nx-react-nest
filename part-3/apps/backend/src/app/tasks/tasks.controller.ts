@@ -8,6 +8,8 @@ import {
   Put,
   Req,
   UseGuards,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { AuthGuard } from '@nestjs/passport';
@@ -20,6 +22,7 @@ export class TasksController {
     private readonly tasksService: TasksService,
     private readonly usersService: UsersService
   ) {}
+  @UsePipes(new ValidationPipe())
   @UseGuards(AuthGuard('jwt'))
   @Post()
   async createTask(@Req() req, @Body() tasksDto: TaskDto) {
@@ -44,9 +47,10 @@ export class TasksController {
     return await this.tasksService.deleteTask(req.user, body.id);
   }
 
+  @UsePipes(new ValidationPipe())
   @UseGuards(AuthGuard('jwt'))
   @Put()
-  async updateTask(@Req() req, @Body() body) {
-    return await this.tasksService.updateTask(req.user, body);
+  async updateTask(@Req() req, @Body() tasksDto: TaskDto) {
+    return await this.tasksService.updateTask(req.user, tasksDto);
   }
 }
